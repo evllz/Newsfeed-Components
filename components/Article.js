@@ -86,6 +86,21 @@ const data = [
     thirdParagraph: `Hodor hodor - hodor... Hodor hodor hodor hodor. Hodor. Hodor! Hodor hodor, hodor hodor hodor hodor hodor; hodor hodor? Hodor!
           Hodor hodor, HODOR hodor, hodor hodor?! Hodor! Hodor hodor, HODOR hodor, hodor hodor, hodor, hodor hodor. Hodor, hodor.
           Hodor. Hodor, hodor, hodor. Hodor hodor... Hodor hodor hodor?! Hodor, hodor... Hodor hodor HODOR hodor, hodor hodor. Hodor.`
+  },
+  {
+    title: 'Venusaur (Pokémon)',
+    date: 'Feb 27th, 1996',
+    firstParagraph: `Venusaur, the Seed Pokémon. A Grass and Poison type. It's believed that a nutritious diet and lots of sunlight make Venusaur's
+     flower bloom in more vibrant colors. The flower's scent can calm and heal the human heart. `,
+
+    secondParagraph: `Venusaur is a squat, quadruped Pokémon with bumpy, blue-green skin. It has small, circular red eyes, a short, blunt snout, and a 
+    wide mouth with two pointed teeth in the upper jaw and four in the lower jaw. On top of its head are small, pointed ears with reddish pink insides. It has
+     three clawed toes on each foot. The bud on its back has bloomed into a large pink, white-spotted flower. The flower is supported by a thick, brown trunk 
+     surrounded by green fronds. A female Venusaur will have a seed in the center of its flower. `,
+
+    thirdParagraph: `As Gigantamax Venusaur, it becomes larger with its flower blooming even further to the point of covering its body. The eyes change to an orange 
+    with light green sclera. It gains several more green leaves along with more petals. The top of the bud becomes longer with three red clouds surrounding it while the
+     trunk shortens. It has several light green markings located at its belly.`
   }
 ];
 
@@ -114,3 +129,38 @@ const data = [
   Step 5: Try adding new article object to the data array. Make sure it is in the same format as the others.
   Refresh the page to see the new article.
 */
+
+function articleMaker(article){
+  const div = document.createElement('div');
+  div.classList.add('article');
+  const h2 = document.createElement('h2');
+  h2.textContent = article.title;
+  div.appendChild(h2);
+  const date = document.createElement('p');
+  date.classList.add('date');
+  date.textContent = article.date;
+  div.appendChild(date);
+  const firstParagraph = document.createElement('p');
+  firstParagraph.textContent = article.firstParagraph;
+  div.appendChild(firstParagraph);
+  const secondParagraph = document.createElement('p');
+  secondParagraph.textContent = article.secondParagraph;
+  div.appendChild(secondParagraph);
+  const thirdParagraph = document.createElement('p');
+  thirdParagraph.textContent = article.thirdParagraph;
+  div.appendChild(thirdParagraph);
+  const button = document.createElement('button');
+  button.classList.add('expandButton');
+  button.textContent = "+";
+  button.addEventListener('click',()=>{
+    div.classList.toggle('article-open');
+  })
+  div.appendChild(button);
+  return div;
+}
+
+data.forEach(article => {
+  let newArticle = articleMaker(article);
+  let parent = document.querySelector('.articles');
+  parent.appendChild(newArticle);
+})
